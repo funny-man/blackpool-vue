@@ -1,5 +1,7 @@
+import 'babel-polyfill'
 import Vue from 'vue'
 import App from './App.vue'
+import './assets/css/index.scss'
 
 Vue.config.productionTip = false
 
