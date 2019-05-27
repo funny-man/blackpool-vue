@@ -4,7 +4,7 @@
       <div class="title">
         <img class="logo" width="60px" :src="data[index].icon" alt="">
         <h5 class="name">{{data[index].name}}</h5>
-        <img class="close" width="20px" src="../assets/image/close.png" alt="">
+        <img class="close" width="20px" src="../assets/image/close.png" alt="" @click="hide">
       </div>
       <div class="content">
         <div class="item" v-for="(item,index) in data[index].text" :key="index">
