@@ -21,8 +21,12 @@
       <div class="layout clearfix">
         <div class="intro-img"></div>
         <div class="intro-text">
-          <h1>BlackPool</h1>
-          <h2>Focusing on Mining and Staking</h2>
+          <transition name="banner">
+            <div v-show="bannerShow">
+              <h1>BlackPool</h1>
+              <h2>Focusing on Mining and Staking</h2>
+            </div>
+          </transition>
           <a href="#services" class="btn">Sign in</a>
         </div>
       </div>
@@ -34,15 +38,17 @@
           <h3>{{english?'BlackPool Staking Pool':'BlackPool 矿池'}}</h3>
           <h4>{{english?'Delegate your tokens to BlackPool and earn rewards':'使用您的token投票，获取收益'}}</h4>
         </div>
-        <div class="content">
-          <ul>
-            <li v-for="(item,index) in blackPoolData" :key="index" :class="item.state ? 'blue-border':'gray-border'">
-              <img class="icon" width="60px" height="60px" :src="item.icon" alt="">
-              <div class="item-val">{{item.value}}</div>
-              <div class="item-name">{{item.name}}</div>
-              <button class="item-btn" :class="{'is-disabled':!item.state}" type="button" :disabled="!item.state" @click="showBox(index)">{{english?item.btnEnglishText:item.btnText}}</button>
-            </li>
-          </ul>
+        <div class="content" ref="card">
+          <transition name="blackpool">
+            <ul v-show="blackpoolShow">
+              <li v-for="(item,index) in blackPoolData" :key="index" :class="item.state ? 'blue-border':'gray-border'">
+                <img class="icon" width="60px" height="60px" :src="item.icon" alt="">
+                <div class="item-val">{{item.value}}</div>
+                <div class="item-name">{{item.name}}</div>
+                <button class="item-btn" :class="{'is-disabled':!item.state}" type="button" :disabled="!item.state" @click="showBox(index)">{{english?item.btnEnglishText:item.btnText}}</button>
+              </li>
+            </ul>
+          </transition>
         </div>
       </div>
     </section>
@@ -173,6 +179,8 @@ export default {
   data() {
     return {
       english: false,
+      bannerShow: false,
+      blackpoolShow: false,
       blackPoolData: [
         {
           icon: iost,
@@ -289,12 +297,34 @@ export default {
       `
     }
   },
+  mounted() {
+    this.bannerShow = true
+    window.addEventListener('scroll', this.handleScroll, true);
+  },
   methods: {
     switchLanguage() {
       this.english = !this.english
     },
     showBox(index) {
       this.$refs.box.show(index)
+    },
+    handleScroll() {
+      // let clock
+      // if(clock){
+      //   clearTimeout(clock)
+       
+      // }
+      // clock=setTimeout(function(){
+        
+      // },300);
+      let scrollTop = document.documentElement.scrollTop
+      let windowHeight = window.innerHeight 
+      let offsetTop=this.$refs.card.offsetTop+400
+      if(offsetTop<windowHeight+scrollTop){
+        this.blackpoolShow = true
+      } else {
+         this.blackpoolShow = false
+      }
     }
   },
   components: {
@@ -447,6 +477,7 @@ nav {
       }
     }
     .content {
+      min-height: 634px;
       ul {
         display: inline-block;
         max-width: 987px;
@@ -686,5 +717,18 @@ nav {
     }
   }
 }
-
+.banner-enter-active, .banner-leave-active {
+  transition: all 1s ease;
+}
+.banner-enter, .banner-leave-to {
+  opacity: 0;
+  transform: translateY(70px);
+}
+.blackpool-enter-active, .blackpool-leave-active {
+  transition: all 1s ease;
+}
+.blackpool-enter, .blackpool-leave-to {
+  opacity: 0;
+  transform: translateY(70px);
+}
 </style>
