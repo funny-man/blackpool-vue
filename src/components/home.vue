@@ -38,9 +38,9 @@
           <h3>{{english?'BlackPool Staking Pool':'BlackPool 矿池'}}</h3>
           <h4>{{english?'Delegate your tokens to BlackPool and earn rewards':'使用您的token投票，获取收益'}}</h4>
         </div>
-        <div class="content min-w" ref="card">
+        <div class="content blackpool-min-h" ref="card">
           <transition name="blackpool">
-            <ul v-if="blackpoolShow">
+            <ul v-show="blackpoolShow">
               <li v-for="(item,index) in blackPoolData" :key="index" :class="item.state ? 'blue-border':'gray-border'">
                 <img class="icon" width="60px" height="60px" :src="item.icon" alt="">
                 <div class="item-val">{{item.value}}</div>
@@ -52,54 +52,67 @@
         </div>
       </div>
     </section>
+    <!--优势-->
     <section class="black－pool superiority">
       <div class="layout">
         <div class="title">
           <h3>{{english?'Advantage':'优势'}}</h3>
           <h4>{{english?'Delegate your tokens and get the best service':'委托您的token并获得优质服务'}}</h4>
         </div>
-        <div class="content">
+        <div class="content card-min-h" ref="superiority">
           <div class="card-warpper">
-            <div class="card">
-              <img class="icon" width="104px" height="104px" src="../assets/image/icons/icon_1.png" alt="">
-              <div class="card-text">
-                <h5>{{english?'Double Protection':'双重保护'}}</h5>
-                <p>{{english?'Security isolation mechanism. Specialized private key and server management':'隔离机制，私钥与服务器专业保护'}}</p>
+            <transition name="card1">
+              <div v-show="cardShow" class="card">
+                <img class="icon" width="104px" height="104px" src="../assets/image/icons/icon_1.png" alt="">
+                <div class="card-text">
+                  <h5>{{english?'Double Protection':'双重保护'}}</h5>
+                  <p>{{english?'Security isolation mechanism. Specialized private key and server management':'隔离机制，私钥与服务器专业保护'}}</p>
+                </div>
               </div>
-            </div>
-            <div class="card">
-              <img class="icon" width="104px" height="104px" src="../assets/image/icons/icon_2.png" alt="">
-              <div class="card-text">
-                <h5>{{english?'7*24 Online':'7*24小时在线'}}</h5>
-                <p>{{english?'Experienced technical team support Automatic monitoring':'专业技术团队维护'}}</p>
+            </transition>
+            <transition name="card2">
+              <div v-show="cardShow" class="card">
+                <img class="icon" width="104px" height="104px" src="../assets/image/icons/icon_2.png" alt="">
+                <div class="card-text">
+                  <h5>{{english?'7*24 Online':'7*24小时在线'}}</h5>
+                  <p>{{english?'Experienced technical team support Automatic monitoring':'专业技术团队维护'}}</p>
+                </div>
               </div>
-            </div>
-            <div class="card">
-              <img class="icon" width="104px" height="104px" src="../assets/image/icons/icon_3.png" alt="">
-              <div class="card-text">
-                <h5>{{english?'Community Governance':'社区治理'}}</h5>
-                <p>{{english?'Contribute to the governance by integrating industry resources':'业内上下游资源整合，参与社区贡献'}}</p>
+            </transition>
+            <transition name="card3">
+              <div v-show="cardShow" class="card">
+                <img class="icon" width="104px" height="104px" src="../assets/image/icons/icon_3.png" alt="">
+                <div class="card-text">
+                  <h5>{{english?'Community Governance':'社区治理'}}</h5>
+                  <p>{{english?'Contribute to the governance by integrating industry resources':'业内上下游资源整合，参与社区贡献'}}</p>
+                </div>
               </div>
-            </div>
-            <div class="card">
-              <img class="icon" width="104px" height="104px" src="../assets/image/icons/icon_4.png" alt="">
-              <div class="card-text">
-                <h5>{{english?'High Standard':'行业高标准'}}</h5>
-                <p>{{english?'Higher specification of hardware and software than industry  requirements':'比行业专有要求更高规格的软硬件性能'}}</p>
+            </transition>
+            <transition name="card4">
+              <div v-show="cardShow" class="card">
+                <img class="icon" width="104px" height="104px" src="../assets/image/icons/icon_4.png" alt="">
+                <div class="card-text">
+                  <h5>{{english?'High Standard':'行业高标准'}}</h5>
+                  <p>{{english?'Higher specification of hardware and software than industry  requirements':'比行业专有要求更高规格的软硬件性能'}}</p>
+                </div>
               </div>
-            </div>
+            </transition>
           </div>
         </div>
       </div>
     </section>
     <!--关于-->
     <section class="about">
-      <div class="layout clearfix">
-        <img class="icon" width="378px" src="../assets/image/about.png" alt="">
-        <div class="about-text">
-          <h5>{{english?'About BlackPool':'关于 BlackPool'}}</h5>
-          <p>{{english? 'BlackPool is a blockchain service platform focusing on mining and staking economy, we are devoting ourself to connect users to the blockchain world conveniently.' : 'BlackPool是一家专注于加密货币挖矿和staking经济的区块链服务平台。 我们致力于让用户便捷地连接到区块链世界。让每一个人都可以分享到区块链带来的红利。'}}</p>
-        </div>
+      <div class="layout clearfix" ref="aboutDom">
+        <transition name="about-left">
+          <img v-show="aboutShow" class="icon" width="378px" src="../assets/image/about.png" alt="">
+        </transition>
+        <transition name="about-right">
+          <div v-show="aboutShow" class="about-text">
+            <h5>{{english?'About BlackPool':'关于 BlackPool'}}</h5>
+            <p>{{english? 'BlackPool is a blockchain service platform focusing on mining and staking economy, we are devoting ourself to connect users to the blockchain world conveniently.' : 'BlackPool是一家专注于加密货币挖矿和staking经济的区块链服务平台。 我们致力于让用户便捷地连接到区块链世界。让每一个人都可以分享到区块链带来的红利。'}}</p>
+          </div>
+        </transition>
       </div>
     </section>
     <!--合作-->
@@ -181,6 +194,8 @@ export default {
       english: false,
       bannerShow: false,
       blackpoolShow: false,
+      cardShow: false,
+      aboutShow: false,
       blackPoolData: [
         {
           icon: iost,
@@ -192,15 +207,27 @@ export default {
           text: [
             {
               title: '1.IOST官方投票',
-              content: '安装谷歌插件钱包iwallet，并导入您的IOST账号，使用Chrome浏览器打开IOST官方投票页面，搜索BlackPool投票'
+              content: [
+                '安装谷歌插件钱包<a style="color: #418FF4;" target="_blank" href="https://chrome.google.com/webstore/detail/kncchdigobghenbbaddojjnnaogfppfj">iwallet</a>，并导入您的IOST账号',
+                '使用Chrome浏览器打开<a style="color: #418FF4;" target="_blank" href="https://www.iostabc.com/producers?page=1&size=50&sort_by=votes&order=desc">IOST官方投票</a>页面，搜索BlackPool投票'
+              ]
+                
+
             },
             {
               title: '2.TokenPocket钱包投票',
-              content: '下载TokenPocket钱包，注册IOST钱包,在资产页面，点击投票，搜索BlackPool，输入投票数并确认投票成功。在该页面可以领取每日奖励和季度奖励。'
+              content: [
+                '下载<a style="color: #418FF4;" target="_blank" href="https://www.tokenpocket.pro/">TokenPocket</a>钱包，注册IOST钱包',
+                '在资产页面，点击投票，搜索BlackPool，输入投票数并确认投票成功。',
+                '在该页面可以领取每日奖励和季度奖励。'
+              ]
             },
             {
               title: '3.Biss交易所投票',
-              content: '打开Biss交易所投票页面,在搜索栏搜索BlackPool，并点击投票'
+              content: [
+                '打开<a style="color: #418FF4;" target="_blank" href="https://iost.biss.com/#/vote">Biss交易所投票</a>页面',
+                '在搜索栏搜索BlackPool，并点击投票'
+              ]
             }
           ],
           prompt:'注意：因IOST主网升级，充值与投票过程请注意区分ERC20地址和IOST主网地址'
@@ -214,11 +241,11 @@ export default {
           state: true,
           text: [
             {
-              title: '1.使用Chrome安装MetaMask，导入存放了IOTX的钱包，钱包中需要有少量ETH支付投票过程中的gas费用',
+              title: '1.使用Chrome安装<a style="color: #418FF4;" target="_blank" href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask</a>，导入存放了IOTX的钱包，钱包中需要有少量ETH支付投票过程中的gas费用',
               content: ''
             },
             {
-              title: '2.前往IOTEX官方投票页面，点击banner处立即投票',
+              title: '2.前往<a style="color: #418FF4;" target="_blank" href="https://member.iotex.io/">IOTEX官方投票页面</a>，点击banner处立即投票',
               content: ''
             },
             {
@@ -241,7 +268,7 @@ export default {
           state: true,
           text: [
             {
-              title: '1.在Chrome浏览器使用Scatter登陆官方投票网站',
+              title: '1.在Chrome浏览器使用<a style="color: #418FF4;" target="_blank" href="https://get-scatter.com/download">Scatter</a>登陆<a style="color: #418FF4;" target="_blank" href="https://bos.eosx.io/tools/votes">官方投票网站</a>',
               content: ''
             },
             {
@@ -309,26 +336,36 @@ export default {
       this.$refs.box.show(index)
     },
     handleScroll() {
-      // let clock
-      // if(clock){
-      //   clearTimeout(clock)
+      let clock
+      if(clock){
+        clearTimeout(clock)
        
-      // }
-      // clock=setTimeout(function(){
-        
-      // },300);
-      // console.log('滚');
-      let scrollTop = document.documentElement.scrollTop? document.documentElement.scrollTop:window.pageYOffset 
-      // console.log(scrollTop);
-      let windowHeight = window.innerHeight 
-      // console.log(windowHeight);
-      let offsetTop=this.$refs.card.offsetTop+200
-      // console.log(offsetTop);
-      if(offsetTop<windowHeight+scrollTop){
-        this.blackpoolShow = true
-      } else {
-         this.blackpoolShow = false
       }
+      clock=setTimeout(()=>{
+        //blackpool监听滚动
+        let scrollTop = document.documentElement.scrollTop? document.documentElement.scrollTop:window.pageYOffset 
+        let windowHeight = window.innerHeight 
+        let blackpoolTop=this.$refs.card.offsetTop+200
+        if(blackpoolTop<windowHeight+scrollTop){
+          this.blackpoolShow = true
+        } else {
+          this.blackpoolShow = false
+        }
+        //优势部分滚动监听
+        let superiorityTop=this.$refs.superiority.offsetTop+200
+        if(superiorityTop<windowHeight+scrollTop){
+          this.cardShow = true
+        } else {
+          this.cardShow = false
+        }
+        // 关于部分滚动监听
+        let aboutTop=this.$refs.aboutDom.offsetTop+200
+        if(aboutTop<windowHeight+scrollTop){
+          this.aboutShow = true
+        } else {
+          this.aboutShow = false
+        }
+      },300);
     }
   },
   components: {
@@ -480,8 +517,11 @@ nav {
         margin-top: 6px;
       }
     }
-    .min-w {
+    .blackpool-min-h {
       min-height: 634px;
+    }
+    .card-min-h {
+      min-height: 368px;
     }
     .content {
       ul {
@@ -590,6 +630,7 @@ nav {
   .layout {
     margin: 0 auto;
     max-width: 1200px;
+    min-height: 413px;
     // min-width: 1120px;
     box-sizing: border-box;
     padding: 100px 0;
@@ -658,6 +699,10 @@ nav {
       .logo {
         margin: 0 40px;
       }
+      .logo:hover {
+        transition: all .6s ease;
+        transform:scale(1.5)
+      }
     }
     form {
       .form-md {
@@ -684,7 +729,6 @@ nav {
         margin-top: 28px;
         background-color: #418FF4;
         border: 1px solid #2973D3;
-        font-family: PingFangSC-Regular;
         font-size: 16px;
         color: #FFFFFF;
         letter-spacing: 0.7px;
@@ -736,5 +780,56 @@ nav {
 .blackpool-enter, .blackpool-leave-to {
   opacity: 0;
   transform: translateY(70px);
+}
+
+.card1-enter-active, .card1-leave-active {
+  transition: all .6s ease;
+}
+.card1-enter, .card1-leave-to {
+  opacity: 0;
+  transform: translateY(70px);
+}
+
+.card2-enter-active, .card2-leave-active {
+  transition: all .6s ease;
+  transition-delay: .3s;
+}
+.card2-enter, .card2-leave-to {
+  opacity: 0;
+  transform: translateY(70px);
+}
+
+.card3-enter-active, .card3-leave-active {
+  transition: all .6s ease;
+  transition-delay: .6s;
+}
+.card3-enter, .card3-leave-to {
+  opacity: 0;
+  transform: translateY(70px);
+}
+
+.card4-enter-active, .card4-leave-active {
+  transition: all .6s ease;
+  transition-delay: .9s;
+}
+.card4-enter, .card4-leave-to {
+  opacity: 0;
+  transform: translateY(70px);
+}
+
+.about-left-enter-active, .about-left-leave-active {
+  transition: all 1s ease;
+}
+.about-left-enter, .about-left-leave-to {
+  opacity: 0;
+  transform: translateX(-70px);
+}
+
+.about-right-enter-active, .about-right-leave-active {
+  transition: all 1s ease;
+}
+.about-right-enter, .about-right-leave-to {
+  opacity: 0;
+  transform: translateX(70px);
 }
 </style>

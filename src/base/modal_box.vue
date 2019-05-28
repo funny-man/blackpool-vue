@@ -8,8 +8,8 @@
       </div>
       <div class="content">
         <div class="item" v-for="(item,index) in data[index].text" :key="index">
-          <h5>{{item.title}}</h5>
-          <p>{{item.content}}</p>
+          <h5 v-html="item.title"></h5>
+          <p v-for="(text,index) in item.content" :key="index" v-html="text"></p>
         </div>
         <div class="prompt">{{data[index].prompt}}</div>
       </div>
