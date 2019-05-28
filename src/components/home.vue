@@ -38,9 +38,9 @@
           <h3>{{english?'BlackPool Staking Pool':'BlackPool 矿池'}}</h3>
           <h4>{{english?'Delegate your tokens to BlackPool and earn rewards':'使用您的token投票，获取收益'}}</h4>
         </div>
-        <div class="content" ref="card">
+        <div class="content min-w" ref="card">
           <transition name="blackpool">
-            <ul v-show="blackpoolShow">
+            <ul v-if="blackpoolShow">
               <li v-for="(item,index) in blackPoolData" :key="index" :class="item.state ? 'blue-border':'gray-border'">
                 <img class="icon" width="60px" height="60px" :src="item.icon" alt="">
                 <div class="item-val">{{item.value}}</div>
@@ -299,7 +299,7 @@ export default {
   },
   mounted() {
     this.bannerShow = true
-    window.addEventListener('scroll', this.handleScroll, true);
+    window.document.addEventListener('scroll', this.handleScroll);
   },
   methods: {
     switchLanguage() {
@@ -317,9 +317,13 @@ export default {
       // clock=setTimeout(function(){
         
       // },300);
-      let scrollTop = document.documentElement.scrollTop
+      // console.log('滚');
+      let scrollTop = document.documentElement.scrollTop? document.documentElement.scrollTop:window.pageYOffset 
+      // console.log(scrollTop);
       let windowHeight = window.innerHeight 
-      let offsetTop=this.$refs.card.offsetTop+400
+      // console.log(windowHeight);
+      let offsetTop=this.$refs.card.offsetTop+200
+      // console.log(offsetTop);
       if(offsetTop<windowHeight+scrollTop){
         this.blackpoolShow = true
       } else {
@@ -476,8 +480,10 @@ nav {
         margin-top: 6px;
       }
     }
-    .content {
+    .min-w {
       min-height: 634px;
+    }
+    .content {
       ul {
         display: inline-block;
         max-width: 987px;
