@@ -11,7 +11,7 @@
             <li class="sign-in"><a href="#">{{!english?'登录':'Sign in'}}</a></li>
             <li><a href="#">|</a></li>
             <li class="sign-up"><a href="#">{{!english?'注册':'Sign up'}}</a></li>
-            <li class="en" @click="switchLanguage"><a href="#">中/EN</a></li>
+            <li class="en" @click="switchLanguage"><a href="javascript:volid(0);">中/EN</a></li>
           </ul>
         </div>
       </div>
@@ -75,7 +75,7 @@
                 <img class="icon" width="104px" height="104px" src="../assets/image/icons/icon_2.png" alt="">
                 <div class="card-text">
                   <h5>{{english?'7*24 Online':'7*24小时在线'}}</h5>
-                  <p>{{english?'Experienced technical team support Automatic monitoring':'专业技术团队维护'}}</p>
+                  <p>{{english?'Experienced technical team support Automatic monitoring':'专业技术团队维护,全自动监控'}}</p>
                 </div>
               </div>
             </transition>
@@ -135,9 +135,14 @@
       <div class="layout clearfix">
         <div class="content">
           <a target="_blank" href="https://twitter.com/BlackPo17368543"><img class="logo" width="26px" src="../assets/image/app/t.png" alt=""></a>
-          <a href="#a"><img class="logo" width="26px" src="../assets/image/app/w.png" alt=""></a>
-          <a href="#a"><img class="logo" width="26px" src="../assets/image/app/f.png" alt=""></a>
-          <a target="_blank" href="https://weibo.com/p/1005057143515164"><img class="logo" width="26px" src="../assets/image/app/x.png" alt=""></a>
+          <a href="javascript:volid(0);">
+            <img class="logo wx-logo" width="26px" src="../assets/image/app/w.png" alt="">
+            <div class="qrcode">
+              <img width="200px" src="../assets/qrcode.jpg" alt="">
+            </div>
+          </a>
+          <!-- <a href="javascript:volid(0);"><img class="logo" width="26px" src="../assets/image/app/f.png" alt=""></a> -->
+          <a target="_blank" href="https://twitter.com/BlackPo17368543"><img class="logo" width="26px" src="../assets/image/app/x.png" alt=""></a>
           <a target="_blank" href="https://t.me/joinchat/AAAAAFatTrYKotlevENm0A"><img class="logo" width="26px" src="../assets/image/app/tt.png" alt=""></a>
           <a href="Mailto:bonnie@coc.vc"><img class="logo" width="26px" src="../assets/image/app/e.png" alt=""></a>
         </div>
@@ -169,7 +174,7 @@
         </form>
       </div>
     </section>
-    <modal-box ref="box" :data="blackPoolData"></modal-box>
+    <modal-box ref="box" :data="blackPoolData" :english="english"></modal-box>
 
   </div>
 </template>
@@ -207,30 +212,44 @@ export default {
           text: [
             {
               title: '1.IOST官方投票',
+              eTitle: '1.IOST Official',
               content: [
-                '安装谷歌插件钱包<a style="color: #418FF4;" target="_blank" href="https://chrome.google.com/webstore/detail/kncchdigobghenbbaddojjnnaogfppfj">iwallet</a>，并导入您的IOST账号',
-                '使用Chrome浏览器打开<a style="color: #418FF4;" target="_blank" href="https://www.iostabc.com/producers?page=1&size=50&sort_by=votes&order=desc">IOST官方投票</a>页面，搜索BlackPool投票'
+                '安装谷歌插件钱包<a style="color: #418FF4;" target="_blank" href="https://chrome.google.com/webstore/detail/kncchdigobghenbbaddojjnnaogfppfj">iwallet</a>，并导入您的IOST账号。',
+                '使用Chrome浏览器打开<a style="color: #418FF4;" target="_blank" href="https://www.iostabc.com/producers?page=1&size=50&sort_by=votes&order=desc">IOST官方投票</a>页面，为BlackPool投票。'
+              ],
+              eContent: [
+                'Install <a style="color: #418FF4;" target="_blank" href="https://chrome.google.com/webstore/detail/kncchdigobghenbbaddojjnnaogfppfj">iwallet</a> and import your IOST account.',
+                'Scan the <a style="color: #418FF4;" target="_blank" href="https://www.iostabc.com/producers?page=1&size=50&sort_by=votes&order=desc">IOST official voting</a> page and vote BlackPool.'
               ]
-                
-
             },
             {
               title: '2.TokenPocket钱包投票',
+              eTitle: '2.TokenPocket',
               content: [
-                '下载<a style="color: #418FF4;" target="_blank" href="https://www.tokenpocket.pro/">TokenPocket</a>钱包，注册IOST钱包',
+                '下载<a style="color: #418FF4;" target="_blank" href="https://www.tokenpocket.pro/">TokenPocket</a>钱包，注册IOST钱包。',
                 '在资产页面，点击投票，搜索BlackPool，输入投票数并确认投票成功。',
                 '在该页面可以领取每日奖励和季度奖励。'
+              ],
+              eContent: [
+                'Download <a style="color: #418FF4;" target="_blank" href="https://www.tokenpocket.pro/">TokenPocket</a> and add IOST account.',
+                'Click Vote in Assets page and search BlackPool, confirm your vote.',
+                'Get your bonus in this page.'
               ]
             },
             {
               title: '3.Biss交易所投票',
+              eTitle: '3.Biss',
               content: [
-                '打开<a style="color: #418FF4;" target="_blank" href="https://iost.biss.com/#/vote">Biss交易所投票</a>页面',
-                '在搜索栏搜索BlackPool，并点击投票'
+                '打开<a style="color: #418FF4;" target="_blank" href="https://iost.biss.com/#/vote">Biss交易所投票</a>页面。',
+                '在搜索栏搜索BlackPool，并点击投票。'
+              ],
+              eContent: [
+                'Scan the <a style="color: #418FF4;" target="_blank" href="https://iost.biss.com/#/vote">Biss voting page</a>.',
+                'Search BlackPool and vote.'
               ]
             }
           ],
-          prompt:'注意：因IOST主网升级，充值与投票过程请注意区分ERC20地址和IOST主网地址'
+          prompt:''
         },
         {
           icon: iotex,
@@ -241,20 +260,22 @@ export default {
           state: true,
           text: [
             {
-              title: '1.使用Chrome安装<a style="color: #418FF4;" target="_blank" href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask</a>，导入存放了IOTX的钱包，钱包中需要有少量ETH支付投票过程中的gas费用',
-              content: ''
+              title: '1.使用Chrome安装 <a style="color: #418FF4;" target="_blank" href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask</a>，导入存放了IOTX的钱包，钱包中需要有少量ETH支付投票过程中的gas费用',
+              eTitle: '1.Install <a style="color: #418FF4;" target="_blank" href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask</a>, import your account and add IOTX token',
+              content: '',
+              eContent: ''
             },
             {
-              title: '2.前往<a style="color: #418FF4;" target="_blank" href="https://member.iotex.io/">IOTEX官方投票页面</a>，点击banner处立即投票',
-              content: ''
+              title: '2.前往<a style="color: #418FF4;" target="_blank" href="https://member.iotex.io/delegate/5ce3db613324884dffa7772d">IOTEX官方投票</a>，页面，输入所投IOTX数量，选择投票时长获取额外票数，建议开启自动质押，填好信息后确认投票',
+              eTitle: '2.Scan the <a style="color: #418FF4;" target="_blank" href="https://member.iotex.io/delegate/5ce3db613324884dffa7772d">IoTeX official voting page</a> and filled the form, confirm the vote information and vote',
+              content: '',
+              eContent: ''
             },
             {
-              title: '3.节点名称搜索BlackPool，输入所投IOTX数量，选择投票时长获取额外票数，建议开启自动质押，填好信息后确认投票',
-              content: ''
-            },
-            {
-              title: '4.在MetaMask确认两笔交易，两笔交易均成功后则投票成功',
-              content: ''
+              title: '3.在MetaMask确认两笔交易，两笔交易均成功后则投票成功',
+              eTitle: '3.Confirm 2 transactions on Metamask, your vote will succeed when transactions finished',
+              content: '',
+              eContent: ''
             }
           ],
           prompt:''
@@ -268,15 +289,18 @@ export default {
           state: true,
           text: [
             {
-              title: '1.在Chrome浏览器使用<a style="color: #418FF4;" target="_blank" href="https://get-scatter.com/download">Scatter</a>登陆<a style="color: #418FF4;" target="_blank" href="https://bos.eosx.io/tools/votes">官方投票网站</a>',
+              title: '1.在Chrome浏览器使用<a style="color: #418FF4;" target="_blank" href="https://get-scatter.com/download">Scatter</a>登陆<a style="color: #418FF4;" target="_blank" href="https://bos.eosx.io/tools/vote">官方投票网站</a>',
+              eTitle: '1.Log in Chrome with <a style="color: #418FF4;" target="_blank" href="https://get-scatter.com/download">Scatter</a> and scan the <a style="color: #418FF4;" target="_blank" href="https://bos.eosx.io/tools/vote">BOS official voting page</a>',
               content: ''
             },
             {
               title: '2.节点账号搜索BlackPool',
+              eTitle: '2.Search BlackPool',
               content: ''
             },
             {
               title: '3.勾选BlackPool名字前的方块，点击投票',
+              eTitle: '3.Select BlackPool and vote',
               content: ''
             }
           ],
@@ -851,12 +875,30 @@ nav {
     padding: 10px 0;
     text-align: center;
     .content {
-      .logo {
-        margin: 0 40px;
-      }
-      .logo:hover {
-        transition: all .6s ease;
-        transform:scale(1.5)
+      a {
+        position: relative;
+        .logo {
+          margin: 0 40px;
+        }
+        .qrcode {
+          position: absolute;
+          top: 160%;
+          left: 50%;
+          z-index: 100;
+          padding: 10px;
+          background-color: #fff;
+          margin-left: -110px;
+          box-shadow: 0 0 10px 0 rgba(195,195,195,0.50);
+          opacity: 0;
+          transition: all .6s ease;
+        }
+        .wx-logo:hover+.qrcode{
+          opacity: 1;
+        }
+        .logo:hover {
+          transition: all .6s ease;
+          transform:scale(1.5)
+        }
       }
     }
     form {

@@ -8,8 +8,13 @@
       </div>
       <div class="content">
         <div class="item" v-for="(item,index) in data[index].text" :key="index">
-          <h5 v-html="item.title"></h5>
-          <p v-for="(text,index) in item.content" :key="index" v-html="text"></p>
+          <h5 v-html="english?item.eTitle:item.title"></h5>
+          <div v-if="english">
+            <p v-for="(text,index) in item.eContent" :key="index" v-html="text"></p>
+          </div>
+          <div v-else>
+            <p v-for="(text,index) in item.content" :key="index" v-html="text"></p>
+          </div>
         </div>
         <div class="prompt">{{data[index].prompt}}</div>
       </div>
@@ -24,6 +29,10 @@ export default {
     data:{
       type: Array,
       default: function(){return []}
+    },
+    english: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -102,6 +111,9 @@ export default {
       .item {
         margin-top: 10px;
         margin-top: 34px;
+        p {
+          margin-left: 18px;
+        }
       }
       .prompt {
         margin-top: 34px;
@@ -109,5 +121,76 @@ export default {
       }
     }
   }
+}
+@media screen and (min-width: 10px) and (max-width: 800px){
+  #box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background: rgba(67,67,67,0.51);
+    // overflow: auto;
+    overflow-y: hidden;    
+    -webkit-overflow-scrolling: touch;
+    .panel {
+      width: 95%;
+      height: 95%;
+      background-color: #F6FCFF;
+      border-radius: 10px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      .title {
+        text-align: left;
+        position: relative;
+        .logo {
+          display: inline-block;
+          margin: 20px 14px 20px 56px;
+          vertical-align: middle;
+        }
+        .name {
+          display: inline-block;
+          display: inline-block;
+          line-height: 100px;
+          vertical-align: middle;
+        }
+        .close {
+          position: absolute;
+          right: 20px;
+          top: 20px;
+        }
+      }
+      .content {
+        background-color: #fff;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 0 0 10px 10px;
+        text-align: left;
+        padding: 2px 56px 30px 56px;
+        overflow-y: auto;
+        font-size: 14px;
+        color: #1B1B1B;
+        letter-spacing: 3.15px;
+        line-height: 30px;
+        .item {
+          margin-top: 10px;
+          margin-top: 34px;
+          p {
+            margin-left: 18px;
+          }
+        }
+        .prompt {
+          margin-top: 34px;
+          color: #D84343;
+        }
+      }
+    }
+  } 
 }
 </style>
