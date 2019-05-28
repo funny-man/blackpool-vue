@@ -564,7 +564,7 @@ nav {
     // background-repeat: no-repeat;
     .layout {
       margin: 0 auto;
-      // max-width: 1200px;
+      max-width: 1200px;
       // min-width: 1120px;
       box-sizing: border-box;
       padding: 20px 0px;
