@@ -281,6 +281,27 @@ export default {
           prompt:''
         },
         {
+          icon: decred,
+          name: 'Chainx',
+          btnText: '委托',
+          btnEnglishText: 'Coming',
+          value: '24%-80%',
+          state: true,
+          text: [
+            {
+              title: '1.访问<a style="color: #418FF4;" target="_blank" href="https://wallet.chainx.org/">ChainX 钱包</a>，注册或导入账户',
+              eTitle: '1.Visit <a style="color: #418FF4;" target="_blank" href="https://wallet.chainx.org/">ChainX Wallet</a>,create or import an account',
+              content: ''
+            },
+            {
+              title: '2.在<a style="color: #418FF4;" target="_blank" href="https://wallet.chainx.org/election">投票选举页面</a>为BlackPool投票',
+              eTitle: '2.Vote BlackPool on the <a style="color: #418FF4;" target="_blank" href="https://wallet.chainx.org/election">vote page</a>',
+              content: ''
+            }
+          ],
+          prompt:''
+        },
+        {
           icon: bos,
           name: 'BOS',
           btnText: '委托',
@@ -304,15 +325,6 @@ export default {
               content: ''
             }
           ],
-          prompt:''
-        },
-        {
-          icon: decred,
-          name: 'Decred',
-          btnText: '敬请期待',
-          btnEnglishText: 'Coming',
-          value: '8.1%~17.1%',
-          state: false,
           prompt:''
         },
         {
